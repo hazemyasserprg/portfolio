@@ -92,8 +92,8 @@ class PortfolioManager {
       });
     }, observerOptions);
 
-    // Observe all sections for animation
-    document.querySelectorAll('.section').forEach(section => {
+    // Observe all sections for animation (except those that animate immediately)
+    document.querySelectorAll('.section:not(.animate-immediately)').forEach(section => {
       observer.observe(section);
     });
   }

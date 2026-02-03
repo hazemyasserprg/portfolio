@@ -270,11 +270,9 @@ p {
 }
 
 .background.background-1 {
-  background: linear-gradient(
-    to right top,
-    #d6d6d6,
-    rgba(248, 249, 250, 0) 70%
-  );
+  background: linear-gradient(to right top,
+      #d6d6d6,
+      rgba(248, 249, 250, 0) 70%);
 }
 
 .button {
@@ -747,6 +745,35 @@ p {
   transform: translateY(0);
 }
 
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section.animate-immediately {
+  animation: slideInUp 0.8s ease forwards;
+}
+
+/* Staggered load sequence */
+.section.introduction.animate-immediately {
+  animation-delay: 0.1s;
+}
+
+.section.contact.animate-immediately {
+  animation-delay: 0.25s;
+}
+
+.section.activities.animate-immediately {
+  animation-delay: 0.4s;
+}
+
 /* Skip link for accessibility */
 .skip-link {
   position: absolute;
@@ -805,6 +832,7 @@ a:focus {
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
+
   .section,
   .button,
   .skill-tag {
@@ -819,6 +847,7 @@ a:focus {
 
 /* Print styles */
 @media print {
+
   .back-to-3d,
   .version-3d {
     display: none;
