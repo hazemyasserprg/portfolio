@@ -547,10 +547,15 @@ p {
 .content .section.activities .list .item .period .date {
   display: inline-block;
   text-transform: uppercase;
-  padding: 5px 8px;
+  padding: 2px 0 2px 12px;
   font-weight: 700;
-  color: #fcb07d;
-  background: #fff;
+  color: #333333;
+  background: transparent;
+  border-left: 3px solid #333333;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+  opacity: 0.8;
 }
 
 .content .section.projects .list {
