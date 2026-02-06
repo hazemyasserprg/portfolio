@@ -9,6 +9,7 @@ class PortfolioManager {
   init() {
     this.detectIframeMode();
     this.setupEventListeners();
+    this.handleResize(); // Initialize with current window size
     this.initializeAnimations();
     this.setupPerformanceMonitoring();
     this.initializeAccessibility();
