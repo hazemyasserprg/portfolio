@@ -18,7 +18,7 @@ export default function Home() {
             <GalaxyBackground />
 
             {/* Hero Section */}
-            <div className="relative w-full min-h-screen flex flex-col items-center justify-center">
+            <div className="relative w-full min-h-screen flex flex-col items-center justify-center pt-20 md:pt-0">
                 {/* 3D Scene integrated behind text */}
                 <div className="absolute inset-0 z-0 flex items-center justify-center">
                     <div className="w-full h-full max-w-4xl opacity-50">
