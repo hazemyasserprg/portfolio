@@ -18,9 +18,9 @@ export default function Home() {
             <GalaxyBackground />
 
             {/* Hero Section */}
-            <div className="relative w-full min-h-screen flex flex-col items-center justify-center pt-20 md:pt-0">
+            <div className="relative w-full min-h-[100dvh] flex flex-col items-center justify-center py-32 md:py-20 overflow-hidden">
                 {/* 3D Scene integrated behind text */}
-                <div className="absolute inset-0 z-0 flex items-center justify-center">
+                <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
                     <div className="w-full h-full max-w-4xl opacity-50">
                         <HeroScene />
                     </div>
@@ -31,6 +31,7 @@ export default function Home() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8 }}
+                        className="flex flex-col items-center"
                     >
                         <span className="px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-[10px] sm:text-sm font-medium text-primary mb-8 inline-block backdrop-blur-md uppercase tracking-wider">
                             Available for new opportunities
@@ -39,19 +40,19 @@ export default function Home() {
                             Building Digital Worlds from <br className="hidden sm:block" />
                             <span className="text-gradient">Database to Pixels</span>
                         </h1>
-                        <p className="text-sm sm:text-lg md:text-2xl text-neutral-400 max-w-3xl mx-auto mb-12 leading-relaxed drop-shadow-lg px-4">
+                        <p className="text-sm sm:text-lg md:text-2xl text-neutral-400 max-w-2xl mx-auto mb-12 leading-relaxed drop-shadow-lg px-4">
                             I&apos;m Hazem Yasser, a Full-Stack Developer specializing in high-performance
                             web applications and immersive 3D experiences.
                         </p>
 
-                        <div className="flex flex-wrap items-center justify-center gap-6 pointer-events-auto">
+                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 pointer-events-auto w-full sm:w-auto">
                             <Link
                                 href="#projects"
                                 onClick={(e) => {
                                     e.preventDefault();
                                     lenis?.scrollTo("#projects", { offset: -80 });
                                 }}
-                                className="premium-button text-lg px-10 py-4 flex items-center justify-center shadow-2xl"
+                                className="premium-button text-base md:text-lg px-8 py-3.5 md:px-10 md:py-4 flex items-center justify-center shadow-2xl w-full sm:w-auto min-w-[160px]"
                             >
                                 View Work
                             </Link>
@@ -61,9 +62,9 @@ export default function Home() {
                                     e.preventDefault();
                                     lenis?.scrollTo("#contact", { offset: -80 });
                                 }}
-                                className="px-10 py-4 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all text-lg font-medium shadow-xl"
+                                className="px-8 py-3.5 md:px-10 md:py-4 rounded-full border border-white/10 text-base md:text-lg font-medium hover:bg-white/5 transition-all backdrop-blur-sm w-full sm:w-auto min-w-[160px] text-center"
                             >
-                                Contact Me
+                                Get in Touch
                             </Link>
                         </div>
                     </motion.div>
@@ -73,7 +74,7 @@ export default function Home() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1, duration: 1 }}
-                        className="mt-24 flex gap-8 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all bg-white/5 px-8 py-4 rounded-full border border-white/5 backdrop-blur-sm pointer-events-auto"
+                        className="mt-20 md:mt-24 flex gap-6 md:gap-8 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all bg-white/5 px-6 md:px-8 py-4 rounded-full border border-white/5 backdrop-blur-sm pointer-events-auto"
                     >
                         <Link href="https://github.com/hazemyasserprg" target="_blank" aria-label="Github Profile" className="hover:text-primary transition-colors"><Github size={24} /></Link>
                         <Link href="https://linkedin.com/in/hazem-dev" target="_blank" aria-label="LinkedIn Profile" className="hover:text-[#0077b5] transition-colors"><Linkedin size={24} /></Link>
