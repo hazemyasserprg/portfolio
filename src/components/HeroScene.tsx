@@ -112,13 +112,13 @@ function Scene() {
                 {/* The Glass Core */}
                 <Sphere
                     ref={meshRef}
-                    args={[1.2, 48, 48]} // Slightly lower segments
+                    args={[1.2, 32, 32]} // Reduced segments further
                     onPointerOver={() => setHovered(true)}
                     onPointerOut={() => setHovered(false)}
                 >
                     <MeshTransmissionMaterial
-                        samples={6} // Lower samples for performance
-                        resolution={512} // Cap internal resolution
+                        samples={3} // Reduced samples
+                        resolution={256} // Reduced resolution
                         thickness={1}
                         chromaticAberration={0.05}
                         anisotropy={0.1}
@@ -147,10 +147,10 @@ function Scene() {
             <ContactShadows
                 position={[0, -3, 0]}
                 opacity={0.4}
-                scale={15}
+                scale={10}
                 blur={2.5}
                 far={4.5}
-                resolution={256} // Lower shadow resolution
+                resolution={128} // Further reduced resolution
             />
         </>
     );

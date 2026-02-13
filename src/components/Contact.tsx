@@ -41,8 +41,8 @@ export default function Contact() {
         <section id="contact" className="py-24 w-full max-w-7xl mx-auto px-4 md:px-6">
             <div className="glass-card p-6 md:p-12 lg:p-24 relative overflow-hidden">
                 {/* Decorative gradient */}
-                <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 blur-[120px] -z-10" />
-                <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/20 blur-[120px] -z-10" />
+                <div className="absolute top-0 right-0 w-96 h-96 bg-[radial-gradient(circle,rgba(99,102,241,0.2)_0%,transparent_70%)] -z-10 pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-96 h-96 bg-[radial-gradient(circle,rgba(16,185,129,0.2)_0%,transparent_70%)] -z-10 pointer-events-none" />
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
                     <div>
@@ -68,7 +68,7 @@ export default function Contact() {
                         </motion.div>
                     </div>
 
-                    <div className="glass-card p-8 bg-white/5 border-white/10">
+                    <div className="bg-white/5 rounded-2xl border border-white/10 p-8">
                         {isSubmitted ? (
                             <motion.div
                                 initial={{ opacity: 0, scale: 0.9 }}

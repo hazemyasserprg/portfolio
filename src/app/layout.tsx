@@ -64,6 +64,7 @@ export default function RootLayout({
         <html lang="en" className="dark" suppressHydrationWarning>
             <body
                 className={`${inter.variable} ${spaceGrotesk.variable} antialiased font-sans`}
+                suppressHydrationWarning
             >
                 <CustomCursor />
                 <SmoothScroll>

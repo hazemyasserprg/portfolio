@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, useSpring, useMotionValue } from "framer-motion";
 
 export default function CustomCursor() {
@@ -20,6 +20,8 @@ export default function CustomCursor() {
     const cursorX = useSpring(mouseX, springConfig);
     const cursorY = useSpring(mouseY, springConfig);
 
+    const lastHoverCheck = useRef(0);
+
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
             mouseX.set(e.clientX);
@@ -27,15 +29,17 @@ export default function CustomCursor() {
 
             if (!isVisible) setIsVisible(true);
 
-            // Check if hovering over a project card
-            const target = e.target as HTMLElement;
-            const isProject = !!target.closest('[data-project-card="true"]');
+            // Throttle hover checks to avoid excessive DOM traversal
+            const now = Date.now();
+            if (now - lastHoverCheck.current > 50) {
+                lastHoverCheck.current = now;
+                const target = e.target as HTMLElement;
+                const isProject = !!target.closest('[data-project-card="true"]');
+                const isInteractive = !!target.closest('a, button, input, textarea, [role="button"], .cursor-pointer');
 
-            // Check for generic interactive elements
-            const isInteractive = !!target.closest('a, button, input, textarea, [role="button"], .cursor-pointer');
-
-            setIsHoveringProject(isProject);
-            setIsHoveringInteractive(isInteractive && !isProject);
+                setIsHoveringProject(isProject);
+                setIsHoveringInteractive(isInteractive && !isProject);
+            }
         };
 
         const handleMouseLeave = () => setIsVisible(false);

@@ -23,7 +23,7 @@ export default function Footer() {
     return (
         <footer className="w-full bg-black pt-24 pb-12 px-6 border-t border-white/5 relative overflow-hidden">
             {/* Background Large Text */}
-            <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 text-[15vw] md:text-[10vw] font-bold text-white/[0.02] whitespace-nowrap pointer-events-none select-none uppercase tracking-tighter">
+            <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 text-[15vw] md:text-[10vw] font-bold text-white/[0.02] whitespace-nowrap pointer-events-none select-none uppercase tracking-tighter will-change-transform">
                 Hazem Yasser
             </div>
 
