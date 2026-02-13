@@ -79,7 +79,7 @@ export default function Navbar() {
         <>
             <nav
                 className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-300 ${isScrolled || mobileMenuOpen
-                    ? "py-4 bg-black/80 backdrop-blur-lg border-b border-white/5"
+                    ? "py-4 bg-black/80 backdrop-blur-lg"
                     : "py-4 md:py-8 bg-transparent"
                     }`}
             >
