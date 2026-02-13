@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+}
+
+body {
+    color: var(--foreground);
+    background: var(--background);
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+    /* Hide default cursor globally */
+}
+
+/* Custom Selection Color */
+::selection {
+    background-color: #6366f1;
+    /* Using primary color */
+    color: #ffffff;
+}
+
+::-moz-selection {
+    background-color: #6366f1;
+    color: #ffffff;
+}
+
+/* Show default cursor on interactive elements */
+a,
+button,
+input,
+textarea,
+select,
+[role="button"],
+.cursor-pointer {
+    cursor: pointer !important;
+}
+
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+    pointer-events: none;
+}
+
+@layer components {
+    .glass-card {
+        @apply bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl;
+    }
+
+    .text-gradient {
+        @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
+    }
+
+    .premium-button {
+        @apply relative px-8 py-3 rounded-full overflow-hidden transition-all duration-300 bg-white text-black font-semibold hover:bg-neutral-200 active:scale-95;
+    }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #444;
+}
