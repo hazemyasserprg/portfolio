@@ -108,7 +108,7 @@ export default function Home() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="glass-card aspect-video p-6 md:p-10 group cursor-pointer hover:border-primary/50 transition-all flex flex-col justify-between overflow-hidden relative h-full"
+                            className="glass-card min-h-[300px] p-6 md:p-10 group cursor-pointer hover:border-primary/50 transition-all flex flex-col justify-between overflow-hidden relative h-full"
                         >
                                 <div className="absolute top-0 right-0 p-8 opacity-0 group-hover:opacity-100 transition-opacity">
                                     <ArrowUpRight size={32} className="text-primary" />

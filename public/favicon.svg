@@ -1,6 +1,5 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none"
-    xmlns="http://www.w3.org/2000/svg">
-    <rect width="32" height="32" rx="8" fill="#0A0A0A"/>
-    <text x="52%" y="54%" font-family="sans-serif" font-weight="bold" font-size="24" fill="white" text-anchor="middle" dominant-baseline="middle">H<tspan fill="#6366F1">.</tspan>
-    </text>
+<svg width="232" height="225" viewBox="0 0 232 225" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="232" height="225" rx="50" fill="#0A0A0A"/>
+<path d="M48 179V47H70.5935V101.463H116.459V47H139V179H116.459V124.473H70.5935V179H48Z" fill="white"/>
+<path d="M166.045 177.182C163.045 177.182 160.47 176.121 158.318 174C156.197 171.848 155.136 169.273 155.136 166.273C155.136 163.303 156.197 160.758 158.318 158.636C160.47 156.515 163.045 155.455 166.045 155.455C168.955 155.455 171.5 156.515 173.682 158.636C175.864 160.758 176.955 163.303 176.955 166.273C176.955 168.273 176.439 170.106 175.409 171.773C174.409 173.409 173.091 174.727 171.455 175.727C169.818 176.697 168.015 177.182 166.045 177.182Z" fill="#6366F1"/>
 </svg>
