@@ -53,10 +53,6 @@ export const metadata: Metadata = {
         index: true,
         follow: true,
     },
-    icons: {
-        icon: '/Favicon.svg',
-        apple: '/apple-icon.png',
-    },
 };
 
 export default function RootLayout({
