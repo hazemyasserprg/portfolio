@@ -11,11 +11,9 @@ import Contact from "@/components/Contact";
 import Experience from "@/components/Experience";
 import { useSmoothScroll } from "@/components/SmoothScroll";
 import { projects } from "@/content/projects";
-import { useSoundEffects } from "@/context/SoundContext";
 
 export default function HomeClient() {
     const lenis = useSmoothScroll();
-    const { } = useSoundEffects();
     return (
         <main className="relative min-h-screen flex flex-col items-center justify-center p-4 md:p-12 lg:p-24 overflow-hidden">
             <GalaxyBackground />

@@ -2,12 +2,10 @@
 
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { useSoundEffects } from "@/context/SoundContext";
 
 export default function Magnetic({ children }: { children: React.ReactNode }) {
     const ref = useRef<HTMLDivElement>(null);
     const [position, setPosition] = useState({ x: 0, y: 0 });
-    const { } = useSoundEffects();
 
     const handleMouse = (e: React.MouseEvent<HTMLDivElement>) => {
         const { clientX, clientY } = e;
