@@ -5,8 +5,10 @@ import { motion } from "framer-motion";
 import { ArrowRight, Github, Linkedin, Twitter, Send, CheckCircle2, AlertCircle } from "lucide-react";
 import Link from "next/link";
 import { submitToNotion } from "@/app/actions/contact";
+import { useSoundEffects } from "@/context/SoundContext";
 
 export default function Contact() {
+    const { playClick } = useSoundEffects();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [formData, setFormData] = useState({
@@ -19,6 +21,7 @@ export default function Contact() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+        playClick();
         setIsSubmitting(true);
         setError(null);
 

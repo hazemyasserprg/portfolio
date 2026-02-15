@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
 import CustomCursor from "@/components/CustomCursor";
+import { SoundProvider } from "@/context/SoundContext";
 import "./globals.css";
 
 const inter = Inter({
@@ -66,12 +67,14 @@ export default function RootLayout({
                 className={`${inter.variable} ${spaceGrotesk.variable} antialiased font-sans`}
                 suppressHydrationWarning
             >
-                <CustomCursor />
-                <SmoothScroll>
-                    <Navbar />
-                    {children}
-                    <Footer />
-                </SmoothScroll>
+                <SoundProvider>
+                    <CustomCursor />
+                    <SmoothScroll>
+                        <Navbar />
+                        {children}
+                        <Footer />
+                    </SmoothScroll>
+                </SoundProvider>
             </body>
         </html>
     );

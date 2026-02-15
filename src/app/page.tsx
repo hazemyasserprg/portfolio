@@ -11,9 +11,11 @@ import Contact from "@/components/Contact";
 import Experience from "@/components/Experience";
 import { useSmoothScroll } from "@/components/SmoothScroll";
 import { projects } from "@/content/projects";
+import { useSoundEffects } from "@/context/SoundContext";
 
 export default function Home() {
     const lenis = useSmoothScroll();
+    const { playClick } = useSoundEffects();
     return (
         <main className="relative min-h-screen flex flex-col items-center justify-center p-4 md:p-12 lg:p-24 overflow-hidden">
             <GalaxyBackground />
@@ -51,6 +53,7 @@ export default function Home() {
                                 <Link
                                     href="#projects"
                                     onClick={(e) => {
+                                        playClick();
                                         e.preventDefault();
                                         lenis?.scrollTo("#projects", { offset: -80 });
                                     }}
@@ -63,6 +66,7 @@ export default function Home() {
                                 <Link
                                     href="#contact"
                                     onClick={(e) => {
+                                        playClick();
                                         e.preventDefault();
                                         lenis?.scrollTo("#contact", { offset: -80 });
                                     }}
@@ -96,7 +100,7 @@ export default function Home() {
                         <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Selected Work</h2>
                         <p className="text-neutral-500 text-base md:text-lg">A showcase of full-stack and 3D projects.</p>
                     </div>
-                    <Link href="/projects" className="group flex items-center gap-2 text-lg font-medium hover:text-primary transition-colors">
+                    <Link href="/projects" onClick={playClick} className="group flex items-center gap-2 text-lg font-medium hover:text-primary transition-colors">
                         All Projects <ArrowUpRight size={22} className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
                     </Link>
                 </div>
@@ -106,6 +110,7 @@ export default function Home() {
                         <Link
                             key={project.slug}
                             href={`/projects/${project.slug}`}
+                            onClick={playClick}
                             data-project-card="true"
                             className="group relative h-full"
                         >    <motion.div

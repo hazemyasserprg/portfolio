@@ -3,9 +3,10 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Volume2, VolumeX } from "lucide-react";
 import { useSmoothScroll } from "./SmoothScroll";
 import { useRouter, usePathname } from "next/navigation";
+import { useSoundEffects } from "@/context/SoundContext";
 
 const navLinks = [
     { name: "Home", href: "/" },
@@ -20,6 +21,7 @@ export default function Navbar() {
     const lenis = useSmoothScroll();
     const router = useRouter();
     const pathname = usePathname();
+    const { isMuted, toggleMute, playClick } = useSoundEffects();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -48,6 +50,7 @@ export default function Navbar() {
     }, [mobileMenuOpen, lenis]);
 
     const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+        playClick();
         if (mobileMenuOpen) {
             setMobileMenuOpen(false);
             if (lenis) {
@@ -99,6 +102,13 @@ export default function Navbar() {
                                 {link.name}
                             </Link>
                         ))}
+                        <button
+                            onClick={toggleMute}
+                            className="p-2 rounded-full border border-white/10 hover:bg-white/5 transition-colors text-neutral-400 hover:text-white"
+                            aria-label={isMuted ? "Unmute" : "Mute"}
+                        >
+                            {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+                        </button>
                         <Link
                             href="mailto:contact@hazem.vip"
                             className="px-5 py-2 rounded-full border border-white/10 text-sm font-medium hover:bg-white hover:text-black transition-all"
@@ -149,8 +159,15 @@ export default function Navbar() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.3 }}
-                                className="mt-8"
+                                className="mt-8 flex flex-col gap-4"
                             >
+                                <button
+                                    onClick={toggleMute}
+                                    className="w-full py-4 rounded-2xl border border-white/10 text-white font-medium flex items-center justify-center gap-2 hover:bg-white/5 transition-colors"
+                                >
+                                    {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+                                    {isMuted ? "Unmute Sounds" : "Mute Sounds"}
+                                </button>
                                 <Link
                                     href="mailto:contact@hazem.vip"
                                     className="w-full py-4 rounded-2xl bg-white text-black text-center font-bold text-lg block"
