@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Code2, Database, Layout, Globe, Cpu, Palette } from "lucide-react";
+import { SpotlightCard } from "./SpotlightCard";
 
 const skillGroups = [
     {
@@ -49,20 +50,22 @@ export default function Skills() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: group.delay, duration: 0.5 }}
-                        className="glass-card p-6 md:p-8 hover:bg-white/[0.07] transition-all group"
+                        className="h-full"
                     >
-                        <div className="mb-6 p-4 rounded-2xl bg-white/5 w-fit group-hover:scale-110 transition-transform">
-                            {group.icon}
-                        </div>
-                        <h3 className="text-xl font-bold mb-6">{group.title}</h3>
-                        <ul className="space-y-3">
-                            {group.skills.map((skill) => (
-                                <li key={skill} className="flex items-center gap-2 text-neutral-400 group-hover:text-neutral-200 transition-colors text-sm">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-primary/40 group-hover:bg-primary transition-colors" />
-                                    {skill}
-                                </li>
-                            ))}
-                        </ul>
+                        <SpotlightCard className="p-6 md:p-8 h-full">
+                            <div className="mb-6 p-4 rounded-2xl bg-white/5 w-fit group-hover:scale-110 transition-transform">
+                                {group.icon}
+                            </div>
+                            <h3 className="text-xl font-bold mb-6">{group.title}</h3>
+                            <ul className="space-y-3">
+                                {group.skills.map((skill) => (
+                                    <li key={skill} className="flex items-center gap-2 text-neutral-400 group-hover:text-neutral-200 transition-colors text-sm">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-primary/40 group-hover:bg-primary transition-colors" />
+                                        {skill}
+                                    </li>
+                                ))}
+                            </ul>
+                        </SpotlightCard>
                     </motion.div>
                 ))}
             </div>

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Briefcase, GraduationCap, Calendar } from "lucide-react";
+import { SpotlightCard } from "./SpotlightCard";
 
 const experiences = [
     {
@@ -38,26 +39,27 @@ export default function Experience() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: index * 0.2 }}
-                        className="glass-card p-6 md:p-10 relative group hover:bg-white/[0.07] transition-all"
                     >
-                        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8">
-                            <div className="flex flex-col sm:flex-row items-start gap-6">
-                                <div className="p-4 rounded-2xl bg-white/5 group-hover:scale-110 transition-transform">
-                                    {exp.icon}
+                        <SpotlightCard className="p-6 md:p-10">
+                            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 h-full">
+                                <div className="flex flex-col sm:flex-row items-start gap-6">
+                                    <div className="p-4 rounded-2xl bg-white/5 group-hover:scale-110 transition-transform">
+                                        {exp.icon}
+                                    </div>
+                                    <div>
+                                        <h3 className="text-xl md:text-2xl font-bold mb-1">{exp.role}</h3>
+                                        <p className="text-primary font-medium mb-4">{exp.company}</p>
+                                        <p className="text-neutral-400 max-w-2xl leading-relaxed">
+                                            {exp.description}
+                                        </p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h3 className="text-xl md:text-2xl font-bold mb-1">{exp.role}</h3>
-                                    <p className="text-primary font-medium mb-4">{exp.company}</p>
-                                    <p className="text-neutral-400 max-w-2xl leading-relaxed">
-                                        {exp.description}
-                                    </p>
+                                <div className="flex items-center gap-2 text-neutral-500 font-mono text-sm bg-white/5 px-4 py-2 rounded-full border border-white/5 w-fit h-fit">
+                                    <Calendar size={14} />
+                                    {exp.period}
                                 </div>
                             </div>
-                            <div className="flex items-center gap-2 text-neutral-500 font-mono text-sm bg-white/5 px-4 py-2 rounded-full border border-white/5 w-fit">
-                                <Calendar size={14} />
-                                {exp.period}
-                            </div>
-                        </div>
+                        </SpotlightCard>
                     </motion.div>
                 ))}
             </div>

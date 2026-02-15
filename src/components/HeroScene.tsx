@@ -13,6 +13,8 @@ import {
     Torus
 } from "@react-three/drei";
 import * as THREE from "three";
+// Removed useScroll since we are relying on time and mouse interaction for now
+// import { useScroll } from "@react-three/drei";
 
 function Particles({ count = 40 }) {
     const points = useMemo(() => {
@@ -76,8 +78,11 @@ function Scene() {
             meshRef.current.rotation.x = THREE.MathUtils.lerp(meshRef.current.rotation.x, time * 0.1 + y * 0.2, 0.1);
             meshRef.current.rotation.y = THREE.MathUtils.lerp(meshRef.current.rotation.y, time * 0.15 + x * 0.2, 0.1);
 
+            // Breathing effect: Gentle scale oscillation
+            const breathing = 1 + Math.sin(time * 1.5) * 0.03;
+
             // Smoothly lerp scale
-            const targetScale = (hovered ? 1.1 : 1) * easedEntrance;
+            const targetScale = (hovered ? 1.15 : 1) * easedEntrance * breathing;
             const currentScale = meshRef.current.scale.x;
             const newScale = THREE.MathUtils.lerp(currentScale, targetScale, 0.1);
             meshRef.current.scale.setScalar(newScale);
@@ -89,17 +94,23 @@ function Scene() {
             }
         }
         if (ring1Ref.current) {
-            ring1Ref.current.rotation.z = time * 0.4;
-            ring1Ref.current.rotation.x = THREE.MathUtils.lerp(ring1Ref.current.rotation.x, time * 0.2 + y * 0.5, 0.1);
+            // Complex gyroscope-like rotation for rings
+            ring1Ref.current.rotation.z = time * 0.2;
+            ring1Ref.current.rotation.x = Math.sin(time * 0.5) * 0.5 + y * 0.5;
+            ring1Ref.current.rotation.y = Math.cos(time * 0.3) * 0.5;
             ring1Ref.current.scale.setScalar(easedEntrance);
         }
         if (ring2Ref.current) {
-            ring2Ref.current.rotation.z = -time * 0.3;
-            ring2Ref.current.rotation.y = THREE.MathUtils.lerp(ring2Ref.current.rotation.y, time * 0.2 + x * 0.5, 0.1);
+            ring2Ref.current.rotation.z = -time * 0.15;
+            ring2Ref.current.rotation.y = Math.sin(time * 0.4) * 0.5 + x * 0.5;
+            ring2Ref.current.rotation.x = Math.cos(time * 0.6) * 0.5;
             ring2Ref.current.scale.setScalar(easedEntrance);
         }
     });
 
+    // function Scene() starts...
+
+    // Use lower resolution for mobile/performance
     return (
         <>
             <PerspectiveCamera makeDefault position={[0, 0, 6]} />
@@ -112,45 +123,48 @@ function Scene() {
                 {/* The Glass Core */}
                 <Sphere
                     ref={meshRef}
-                    args={[1.2, 32, 32]} // Reduced segments further
+                    args={[1.2, 32, 32]}
                     onPointerOver={() => setHovered(true)}
                     onPointerOut={() => setHovered(false)}
                 >
                     <MeshTransmissionMaterial
-                        samples={3} // Reduced samples
-                        resolution={256} // Reduced resolution
-                        thickness={1}
-                        chromaticAberration={0.05}
-                        anisotropy={0.1}
-                        distortion={0.5}
-                        distortionScale={0.5}
+                        samples={4} // Reduced from 6 for performance
+                        resolution={256} // Reduced from 512 for performance
+                        thickness={1.2}
+                        chromaticAberration={0.06}
+                        anisotropy={0.2}
+                        distortion={0.6}
+                        distortionScale={0.6}
                         temporalDistortion={0.2}
-                        color={colorA} // Initial color
-                        roughness={0.1}
+                        color={colorA}
+                        roughness={0.05}
                         transmission={1}
+                        background={new THREE.Color("#000000")}
                     />
                 </Sphere>
 
-                {/* Orbiting Glass Rings */}
-                <Torus ref={ring1Ref} args={[2.2, 0.015, 12, 64]} rotation={[Math.PI / 2, 0, 0]}>
-                    <meshStandardMaterial color="#6366f1" emissive="#6366f1" emissiveIntensity={2} transparent opacity={0.5} />
+                {/* Orbiting Glass Rings - Gyroscope effect */}
+                <Torus ref={ring1Ref} args={[2.3, 0.02, 12, 48]} rotation={[Math.PI / 2, 0, 0]}>
+                    <meshStandardMaterial color="#6366f1" emissive="#6366f1" emissiveIntensity={1} transparent opacity={0.4} />
                 </Torus>
 
-                <Torus ref={ring2Ref} args={[2.5, 0.01, 12, 64]} rotation={[Math.PI / 4, Math.PI / 4, 0]}>
-                    <meshStandardMaterial color="#10b981" emissive="#10b981" emissiveIntensity={2} transparent opacity={0.3} />
+                <Torus ref={ring2Ref} args={[2.6, 0.015, 12, 48]} rotation={[Math.PI / 4, Math.PI / 4, 0]}>
+                    <meshStandardMaterial color="#10b981" emissive="#10b981" emissiveIntensity={1} transparent opacity={0.25} />
                 </Torus>
             </Float>
 
-            <Particles count={40} />
+            <Particles count={30} />
             <Rig />
 
+            {/* Optimized shadow */}
             <ContactShadows
                 position={[0, -3, 0]}
                 opacity={0.4}
                 scale={10}
                 blur={2.5}
                 far={4.5}
-                resolution={128} // Further reduced resolution
+                resolution={128}
+                frames={1} // Only render shadow once since it doesn't move much
             />
         </>
     );
@@ -159,7 +173,8 @@ function Scene() {
 export default function HeroScene() {
     return (
         <div className="w-full h-full cursor-none">
-            <Canvas dpr={[1, 1.5]}>
+            <Canvas dpr={[1, 1.5]} performance={{ min: 0.5 }}>
+                {/* No PerformanceMonitor needed if we set min/max DPR directly */}
                 <Scene />
             </Canvas>
         </div>

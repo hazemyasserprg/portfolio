@@ -5,6 +5,7 @@ import { ArrowUpRight, Github, Linkedin, Instagram, Twitter } from "lucide-react
 import Link from "next/link";
 import GalaxyBackground from "@/components/GalaxyBackground";
 import HeroScene from "@/components/HeroScene";
+import Magnetic from "@/components/Magnetic";
 import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
 import Experience from "@/components/Experience";
@@ -46,26 +47,30 @@ export default function Home() {
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 pointer-events-auto w-full sm:w-auto">
-                            <Link
-                                href="#projects"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    lenis?.scrollTo("#projects", { offset: -80 });
-                                }}
-                                className="premium-button text-base md:text-lg px-8 py-3.5 md:px-10 md:py-4 flex items-center justify-center shadow-2xl w-full sm:w-auto min-w-[160px]"
-                            >
-                                View Work
-                            </Link>
-                            <Link
-                                href="#contact"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    lenis?.scrollTo("#contact", { offset: -80 });
-                                }}
-                                className="px-8 py-3.5 md:px-10 md:py-4 rounded-full border border-white/10 text-base md:text-lg font-medium hover:bg-white/5 transition-all backdrop-blur-sm w-full sm:w-auto min-w-[160px] text-center"
-                            >
-                                Get in Touch
-                            </Link>
+                            <Magnetic>
+                                <Link
+                                    href="#projects"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        lenis?.scrollTo("#projects", { offset: -80 });
+                                    }}
+                                    className="premium-button text-base md:text-lg px-8 py-3.5 md:px-10 md:py-4 flex items-center justify-center shadow-2xl w-full sm:w-auto min-w-[160px]"
+                                >
+                                    View Work
+                                </Link>
+                            </Magnetic>
+                            <Magnetic>
+                                <Link
+                                    href="#contact"
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        lenis?.scrollTo("#contact", { offset: -80 });
+                                    }}
+                                    className="px-8 py-3.5 md:px-10 md:py-4 rounded-full border border-white/10 text-base md:text-lg font-medium hover:bg-white/5 transition-all backdrop-blur-sm w-full sm:w-auto min-w-[160px] text-center inline-block"
+                                >
+                                    Get in Touch
+                                </Link>
+                            </Magnetic>
                         </div>
                     </motion.div>
 
@@ -74,12 +79,12 @@ export default function Home() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1, duration: 1 }}
-                        className="mt-20 md:mt-24 flex gap-6 md:gap-8 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all bg-white/5 px-6 md:px-8 py-4 rounded-full border border-white/5 backdrop-blur-sm pointer-events-auto"
+                        className="mt-20 md:mt-24 flex gap-6 md:gap-8 bg-white/5 px-6 md:px-8 py-4 rounded-full border border-white/5 backdrop-blur-sm pointer-events-auto"
                     >
-                        <Link href="https://github.com/hazemyasserprg" target="_blank" aria-label="Github Profile" className="hover:text-primary transition-colors"><Github size={24} /></Link>
-                        <Link href="https://linkedin.com/in/hazem-dev" target="_blank" aria-label="LinkedIn Profile" className="hover:text-[#0077b5] transition-colors"><Linkedin size={24} /></Link>
-                        <Link href="https://instagram.com/hazem_yasser_" target="_blank" aria-label="Instagram Profile" className="hover:text-[#e4405f] transition-colors"><Instagram size={24} /></Link>
-                        <Link href="https://x.com/HazemYa23091301" target="_blank" aria-label="X (Twitter) Profile" className="hover:text-[#1da1f2] transition-colors"><Twitter size={24} /></Link>
+                        <Magnetic><Link href="https://github.com/hazemyasserprg" target="_blank" aria-label="Github Profile" className="block text-neutral-400 hover:text-primary transition-colors grayscale opacity-50 hover:grayscale-0 hover:opacity-100"><Github size={24} /></Link></Magnetic>
+                        <Magnetic><Link href="https://linkedin.com/in/hazem-dev" target="_blank" aria-label="LinkedIn Profile" className="block text-neutral-400 hover:text-[#0077b5] transition-colors grayscale opacity-50 hover:grayscale-0 hover:opacity-100"><Linkedin size={24} /></Link></Magnetic>
+                        <Magnetic><Link href="https://instagram.com/hazem_yasser_" target="_blank" aria-label="Instagram Profile" className="block text-neutral-400 hover:text-[#e4405f] transition-colors grayscale opacity-50 hover:grayscale-0 hover:opacity-100"><Instagram size={24} /></Link></Magnetic>
+                        <Magnetic><Link href="https://x.com/HazemYa23091301" target="_blank" aria-label="X (Twitter) Profile" className="block text-neutral-400 hover:text-[#1da1f2] transition-colors grayscale opacity-50 hover:grayscale-0 hover:opacity-100"><Twitter size={24} /></Link></Magnetic>
                     </motion.div>
                 </div>
             </div>

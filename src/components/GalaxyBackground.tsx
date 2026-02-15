@@ -5,42 +5,61 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 import * as THREE from "three";
 
-function Stars(props: any) {
-    const ref = useRef<any>(null);
-    const [sphere] = useMemo(() => {
-        const positions = new Float32Array(2000 * 3);
-        for (let i = 0; i < 2000; i++) {
-            const r = 1.5;
-            const theta = 2 * Math.PI * Math.random();
+function Stars() {
+    const ref = useRef<THREE.Points>(null);
+    const count = 700; // Reduced from 2000
+
+    // Generate positions once
+    const positions = useMemo(() => {
+        const p = new Float32Array(count * 3);
+        const color = new Float32Array(count * 3);
+
+        for (let i = 0; i < count; i++) {
+            // Random distribution in a sphere
+            const r = 1.2 * Math.cbrt(Math.random());
+            const theta = Math.random() * 2 * Math.PI;
             const phi = Math.acos(2 * Math.random() - 1);
-            positions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
-            positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
-            positions[i * 3 + 2] = r * Math.cos(phi);
+
+            p[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+            p[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
+            p[i * 3 + 2] = r * Math.cos(phi);
         }
-        return [positions];
+        return p;
     }, []);
 
     useFrame((state, delta) => {
         if (!ref.current) return;
-        ref.current.rotation.x -= delta / 10;
-        ref.current.rotation.y -= delta / 15;
+        // Verify very slow rotation
+        ref.current.rotation.x -= delta / 15;
+        ref.current.rotation.y -= delta / 20;
 
-        // Subtle drift toward mouse
-        ref.current.rotation.x += state.mouse.y * 0.0005;
-        ref.current.rotation.y += state.mouse.x * 0.0005;
+        // Subtle mouse parallax
+        const { x, y } = state.mouse;
+        ref.current.rotation.x += y * 0.0002;
+        ref.current.rotation.y += x * 0.0002;
     });
 
     return (
         <group rotation={[0, 0, Math.PI / 4]}>
-            <Points ref={ref} positions={sphere} stride={3} frustumCulled={false} {...props}>
-                <PointMaterial
-                    transparent
+            <points ref={ref}>
+                <bufferGeometry>
+                    <bufferAttribute
+                        attach="attributes-position"
+                        count={count}
+                        array={positions}
+                        itemSize={3}
+                        args={[positions, 3]}
+                    />
+                </bufferGeometry>
+                <pointsMaterial
+                    size={0.003}
                     color="#6366f1"
-                    size={0.002}
                     sizeAttenuation={true}
+                    transparent={true}
+                    opacity={0.6}
                     depthWrite={false}
                 />
-            </Points>
+            </points>
         </group>
     );
 }
