@@ -7,6 +7,7 @@ import { Menu, X, Volume2, VolumeX } from "lucide-react";
 import { useSmoothScroll } from "./SmoothScroll";
 import { useRouter, usePathname } from "next/navigation";
 import { useSoundEffects } from "@/context/SoundContext";
+import Magnetic from "./Magnetic";
 
 const navLinks = [
     { name: "Home", href: "/" },
@@ -21,7 +22,7 @@ export default function Navbar() {
     const lenis = useSmoothScroll();
     const router = useRouter();
     const pathname = usePathname();
-    const { isMuted, toggleMute, playClick } = useSoundEffects();
+    const { isMuted, toggleMute } = useSoundEffects();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -50,7 +51,6 @@ export default function Navbar() {
     }, [mobileMenuOpen, lenis]);
 
     const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-        playClick();
         if (mobileMenuOpen) {
             setMobileMenuOpen(false);
             if (lenis) {
@@ -86,35 +86,42 @@ export default function Navbar() {
                     }`}
             >
                 <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-                    <Link href="/" onClick={(e) => handleNavClick(e, "/")} className="text-xl font-bold tracking-tighter hover:opacity-70 transition-opacity">
-                        HAZEM<span className="text-primary text-2xl">.</span>
-                    </Link>
+                    <Magnetic>
+                        <Link href="/" onClick={(e) => handleNavClick(e, "/")} className="text-xl font-bold tracking-tighter hover:opacity-70 transition-opacity">
+                            HAZEM<span className="text-primary text-2xl">.</span>
+                        </Link>
+                    </Magnetic>
 
                     {/* Desktop Nav */}
                     <div className="hidden md:flex gap-8 items-center">
                         {navLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                href={link.href}
-                                onClick={(e) => handleNavClick(e, link.href)}
-                                className="text-sm font-medium text-neutral-400 hover:text-white transition-colors"
-                            >
-                                {link.name}
-                            </Link>
+                            <Magnetic key={link.name}>
+                                <Link
+                                    href={link.href}
+                                    onClick={(e) => handleNavClick(e, link.href)}
+                                    className="text-sm font-medium text-neutral-400 hover:text-white transition-colors p-2"
+                                >
+                                    {link.name}
+                                </Link>
+                            </Magnetic>
                         ))}
-                        <button
-                            onClick={toggleMute}
-                            className="p-2 rounded-full border border-white/10 hover:bg-white/5 transition-colors text-neutral-400 hover:text-white"
-                            aria-label={isMuted ? "Unmute" : "Mute"}
-                        >
-                            {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
-                        </button>
-                        <Link
-                            href="mailto:contact@hazem.vip"
-                            className="px-5 py-2 rounded-full border border-white/10 text-sm font-medium hover:bg-white hover:text-black transition-all"
-                        >
-                            Hire Me
-                        </Link>
+                        <Magnetic>
+                            <button
+                                onClick={toggleMute}
+                                className="p-2 rounded-full border border-white/10 hover:bg-white/5 transition-colors text-neutral-400 hover:text-white"
+                                aria-label={isMuted ? "Unmute" : "Mute"}
+                            >
+                                {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+                            </button>
+                        </Magnetic>
+                        <Magnetic>
+                            <Link
+                                href="mailto:contact@hazem.vip"
+                                className="px-5 py-2 rounded-full border border-white/10 text-sm font-medium hover:bg-white hover:text-black transition-all"
+                            >
+                                Hire Me
+                            </Link>
+                        </Magnetic>
                     </div>
 
                     {/* Mobile Toggle */}

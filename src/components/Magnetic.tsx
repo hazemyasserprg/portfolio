@@ -7,7 +7,7 @@ import { useSoundEffects } from "@/context/SoundContext";
 export default function Magnetic({ children }: { children: React.ReactNode }) {
     const ref = useRef<HTMLDivElement>(null);
     const [position, setPosition] = useState({ x: 0, y: 0 });
-    const { playHover } = useSoundEffects();
+    const { } = useSoundEffects();
 
     const handleMouse = (e: React.MouseEvent<HTMLDivElement>) => {
         const { clientX, clientY } = e;
@@ -30,7 +30,6 @@ export default function Magnetic({ children }: { children: React.ReactNode }) {
         <motion.div
             style={{ position: "relative" }}
             ref={ref}
-            onMouseEnter={playHover}
             onMouseMove={handleMouse}
             onMouseLeave={reset}
             animate={{ x: position.x, y: position.y }}
