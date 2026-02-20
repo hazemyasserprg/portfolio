@@ -20,7 +20,7 @@ const skillGroups = [
     {
         title: "Creative & Engineering",
         icon: <Palette className="text-purple-500" size={32} />,
-        skills: ["UI/UX Design", "Figma", "WebGL", "Performance Optimization", "SEO", "Accessibility"],
+        skills: ["UI/UX Design", "Figma", "Framer", "WebGL", "Performance Optimization", "SEO", "Accessibility"],
         delay: 0.3
     },
     {

@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             title: project.title,
             description: project.description,
             type: "article",
-            images: ["/og-image.jpg"],
+            images: [project.image || "/og-image.jpg"],
         },
     };
 }
@@ -39,5 +39,26 @@ export default async function ProjectPage({ params }: PageProps) {
         notFound();
     }
 
-    return <ProjectContent project={project} />;
+    const structuredData = {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "name": project.title,
+        "description": project.description,
+        "url": `https://hazem.vip/projects/${project.slug}`,
+        "author": {
+            "@type": "Person",
+            "name": "Hazem Yasser"
+        },
+        "image": project.image ? `https://hazem.vip${project.image}` : "https://hazem.vip/og-image.jpg"
+    };
+
+    return (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+            />
+            <ProjectContent project={project} />
+        </>
+    );
 }

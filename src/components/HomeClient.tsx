@@ -43,7 +43,7 @@ export default function HomeClient() {
                         </h1>
                         <p className="text-sm sm:text-lg md:text-2xl text-neutral-400 max-w-2xl mx-auto mb-12 leading-relaxed drop-shadow-lg px-4">
                             I&apos;m Hazem Yasser, a Full-Stack Developer specializing in high-performance
-                            web applications and immersive 3D experiences.
+                            web applications, immersive 3D experiences, and modern Framer sites.
                         </p>
 
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 pointer-events-auto w-full sm:w-auto">

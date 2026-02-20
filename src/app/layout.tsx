@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -62,6 +64,32 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className="dark" suppressHydrationWarning>
+            <head>
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{
+                        __html: JSON.stringify({
+                            "@context": "https://schema.org",
+                            "@type": "ProfilePage",
+                            "dateCreated": "2024-01-01T12:00:00+00:00",
+                            "mainEntity": {
+                                "@type": "Person",
+                                "name": "Hazem Yasser",
+                                "alternateName": "Hazem",
+                                "description": "Full-Stack Developer Specializing in high-performance web applications, immersive 3D experiences, and modern web design.",
+                                "image": "https://hazem.vip/og-image.jpg",
+                                "url": "https://hazem.vip",
+                                "sameAs": [
+                                    "https://github.com/hazemyasserprg",
+                                    "https://linkedin.com/in/hazem-dev",
+                                    "https://x.com/HazemYa23091301",
+                                    "https://instagram.com/hazem_yasser_"
+                                ]
+                            }
+                        })
+                    }}
+                />
+            </head>
             <body
                 className={`${inter.variable} ${spaceGrotesk.variable} antialiased font-sans`}
                 suppressHydrationWarning
@@ -72,6 +100,8 @@ export default function RootLayout({
                     {children}
                     <Footer />
                 </SmoothScroll>
+                <Analytics />
+                <SpeedInsights />
             </body>
         </html>
     );

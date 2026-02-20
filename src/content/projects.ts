@@ -137,5 +137,25 @@ export const projects: Project[] = [
             backend: ["Static Hosting"],
             other: ["SVG to 3D Extrusion pipelines"]
         }
+    },
+    {
+        slug: "moawya-portfolio",
+        title: "Moawya | Video Editor",
+        category: "Web Design / Framer",
+        description: "A stunning video editing portfolio showcasing creative work, built with Framer.",
+        fullDescription: "This project is a dynamic, high-performance portfolio website built using Framer for Moawya, a professional video editor. It features smooth animations, responsive design, and an engaging user interface that highlights storytelling and content creation capabilities.",
+        tags: ["Framer", "Web Design", "Animation", "UI/UX"],
+        demo: "https://moawya.framer.website/",
+        highlights: [
+            "Seamless page transitions and scrolling effects",
+            "Fully responsive design across all devices",
+            "Modern, clean, and media-focused user interface",
+            "Optimized performance for high-quality video content"
+        ],
+        technicalDetails: {
+            frontend: ["Framer", "React", "CSS Variables"],
+            backend: ["Framer CMS", "Framer Hosting"],
+            other: ["Custom Animations", "Responsive Breakpoints"]
+        }
     }
 ];
