@@ -52,11 +52,40 @@ export default async function ProjectPage({ params }: PageProps) {
         "image": project.image ? `https://hazem.vip${project.image}` : "https://hazem.vip/ogImage.png"
     };
 
+    const breadcrumbData = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://hazem.vip"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Projects",
+                "item": "https://hazem.vip/projects"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": project.title,
+                "item": `https://hazem.vip/projects/${project.slug}`
+            }
+        ]
+    };
+
     return (
         <>
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
             />
             <ProjectContent project={project} />
         </>

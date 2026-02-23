@@ -20,6 +20,9 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
     metadataBase: new URL('https://hazem.vip'),
+    alternates: {
+        canonical: '/',
+    },
     title: {
         default: "Hazem Yasser | Full-Stack Developer & 3D Web Creative",
         template: "%s | Hazem Yasser"
