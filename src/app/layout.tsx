@@ -37,7 +37,7 @@ export const metadata: Metadata = {
         description: "Transforming complex logic into stunning digital worlds with React, Next.js, and Three.js.",
         images: [
             {
-                url: "/og-image.jpg", // Make sure to add this image to your public folder!
+                url: "/ogImage.png", // Make sure to add this image to your public folder!
                 width: 1200,
                 height: 630,
                 alt: "Hazem Yasser Portfolio Preview",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
         title: "Hazem Yasser | Full-Stack Developer",
         description: "Full-Stack Developer & 3D Web Creative. Specializing in high-performance web applications.",
         creator: "@HazemYa23091301",
-        images: ["/og-image.jpg"],
+        images: ["/ogImage.png"],
     },
     robots: {
         index: true,
@@ -77,7 +77,7 @@ export default function RootLayout({
                                 "name": "Hazem Yasser",
                                 "alternateName": "Hazem",
                                 "description": "Full-Stack Developer Specializing in high-performance web applications, immersive 3D experiences, and modern web design.",
-                                "image": "https://hazem.vip/og-image.jpg",
+                                "image": "https://hazem.vip/ogImage.png",
                                 "url": "https://hazem.vip",
                                 "sameAs": [
                                     "https://github.com/hazemyasserprg",

@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             title: project.title,
             description: project.description,
             type: "article",
-            images: [project.image || "/og-image.jpg"],
+            images: [project.image || "/ogImage.png"],
         },
     };
 }
@@ -49,7 +49,7 @@ export default async function ProjectPage({ params }: PageProps) {
             "@type": "Person",
             "name": "Hazem Yasser"
         },
-        "image": project.image ? `https://hazem.vip${project.image}` : "https://hazem.vip/og-image.jpg"
+        "image": project.image ? `https://hazem.vip${project.image}` : "https://hazem.vip/ogImage.png"
     };
 
     return (
